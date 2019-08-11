@@ -10,7 +10,7 @@ public class EntryPoint : MonoBehaviour
     }
     private GameState state;
     private VehicleHandler vehicleHandler;
-    [SerializeField] private VehicleComponent vehicleComponent;
+    [SerializeField] private VehicleComponent[] vehicleComponent;
     void Start()
     {
         vehicleHandler = new VehicleHandler(vehicleComponent);

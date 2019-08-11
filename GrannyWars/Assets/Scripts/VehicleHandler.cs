@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class VehicleHandler
 {
-    private VehicleComponent vehicleComponent;
+    private VehicleComponent[] vehicleComponent;
 
-    public VehicleHandler(VehicleComponent vehicleComponent)
+    public VehicleHandler(VehicleComponent[] vehicleComponent)
     {
         this.vehicleComponent = vehicleComponent;
     }
