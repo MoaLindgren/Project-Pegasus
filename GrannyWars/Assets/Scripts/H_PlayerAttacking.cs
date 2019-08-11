@@ -2,17 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class H_PlayerAttacking : MonoBehaviour
+public class H_PlayerAttacking
 {
-    // Start is called before the first frame update
-    void Start()
+    private Collider[] enemies;
+    private C_Player[] playerComponent;
+    private bool canAttack = false;
+
+    public H_PlayerAttacking(C_Player[] playerComponent)
     {
-        
+        this.playerComponent = playerComponent;
     }
 
-    // Update is called once per frame
-    void Update()
+    void Tick()
     {
-        
+        Physics.OverlapSphereNonAlloc(playerComponent[0].transform.position, playerComponent[0].basicAttackRange, enemies);
+
+        if(enemies.Length > 0)
+        {
+            canAttack = true;
+        }
+    }
+
+    private void Attack()
+    {
+
     }
 }
