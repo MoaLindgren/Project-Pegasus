@@ -16,3 +16,9 @@ public class C_Player : MonoBehaviour
     public float[] abilityCooldown;
 
 }
+public struct Ability
+{
+	float attackDMG;
+	float attackSPD;
+	float abilityCooldown;
+}
