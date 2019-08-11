@@ -10,7 +10,9 @@ public class C_Player : MonoBehaviour
     [Header("Damage Settings")]
     public float basicAttackDamage;
     public float basicAttackSpeed;
+    public float basicAttackRange;
     public float[] abilityAttackDamage;
     public float[] abilityAttackSpeed;
     public float[] abilityCooldown;
+
 }
