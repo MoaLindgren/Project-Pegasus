@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class H_PlayerMovement : MonoBehaviour
+public class H_PlayerMovement: HandlerBehaviour
 {
 	C_Player[] players;
 
@@ -13,9 +13,16 @@ public class H_PlayerMovement : MonoBehaviour
 
 	public void Tick()
 	{
-		float _horizontalAxis = Input.GetAxis("Horizontal");
-		float _verticalAxis = Input.GetAxis("Vertical");
+		float _deltaTime = Time.deltaTime;
+		
+		foreach (C_Player p in players)
+		{
+			float _horizontalAxis = Input.GetAxis("Horizontal");
+			float _verticalAxis = Input.GetAxis("Vertical");
 
-		players[0].transform.position = players[0].transform.position + (Vector3.forward * _verticalAxis + Vector3.right * _verticalAxis) * players[0].speed;
+			p.transform.position += (Vector3.forward * _verticalAxis + Vector3.right * _horizontalAxis) * players[0].speed * _deltaTime;
+
+		}
+
 	}
 }
