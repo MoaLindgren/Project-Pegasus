@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EntryPoint : MonoBehaviour
+public class C_Player : MonoBehaviour
 {
-    
+	[SerializeField] float speed;
 }
