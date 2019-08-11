@@ -4,5 +4,7 @@ using UnityEngine;
 
 public class EntryPoint : MonoBehaviour
 {
-    
+	[SerializeField] C_Player[] players;
+
+
 }
