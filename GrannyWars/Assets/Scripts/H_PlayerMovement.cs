@@ -15,5 +15,7 @@ public class H_PlayerMovement : MonoBehaviour
 	{
 		float _horizontalAxis = Input.GetAxis("Horizontal");
 		float _verticalAxis = Input.GetAxis("Vertical");
+
+		players[0].transform.position = players[0].transform.position + (Vector3.forward * _verticalAxis + Vector3.right * _verticalAxis) * players[0].speed;
 	}
 }
