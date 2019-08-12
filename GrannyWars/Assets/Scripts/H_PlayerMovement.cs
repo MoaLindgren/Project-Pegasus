@@ -11,6 +11,7 @@ public class H_PlayerMovement: HandlerBehaviour
 		this.players = playerComponents;
 	}
 
+	//Called every frame by entry point
 	public void Tick()
 	{
 		float _deltaTime = Time.deltaTime;
@@ -28,16 +29,9 @@ public class H_PlayerMovement: HandlerBehaviour
 			//Calculate rotation
 			Vector3 _direction = _position - _previousPosition;
 			_direction = _direction - Vector3.up * _direction.y;
-			p.transform.Rotate(Vector3.up, GetRotation(p.transform.forward, _direction));
+			p.transform.LookAt(p.transform.position + _direction);
 		}
 
 	}
-
-	private float GetRotation(Vector3 from, Vector3 to)
-	{
-		Vector2 f = new Vector2(from.x, from.z);
-		Vector2 t = new Vector2(to.x, to.z);
-		return Vector2.Angle(f,t);
-		
-	}
+	
 }
