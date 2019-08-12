@@ -10,6 +10,7 @@ public class EntryPoint : MonoBehaviour
 	private void Start()
 	{
 		movement = new H_PlayerMovement(players);
+		movement.Start();
 	}
 
 	private void Update()

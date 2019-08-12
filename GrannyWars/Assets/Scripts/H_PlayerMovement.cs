@@ -11,6 +11,14 @@ public class H_PlayerMovement: HandlerBehaviour
 		this.players = playerComponents;
 	}
 
+	public void Start()
+	{
+		foreach (C_Player p in players)
+		{
+			setSpawnPosition(p);
+		}
+	}
+
 	//Called every frame by entry point
 	public void Tick()
 	{
@@ -33,5 +41,14 @@ public class H_PlayerMovement: HandlerBehaviour
 		}
 
 	}
-	
+
+	#region Private methods
+
+	void setSpawnPosition(C_Player p)
+	{
+		p.transform.position = p.transform.position - Vector3.up * p.transform.position.y;
+	}
+
+	#endregion
+
 }
