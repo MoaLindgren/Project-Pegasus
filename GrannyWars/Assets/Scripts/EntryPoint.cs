@@ -21,7 +21,7 @@ public class EntryPoint : MonoBehaviour
 		movement = new H_PlayerMovement(players);
         attacking = new H_PlayerAttacking(players[0], projectiles);
 		obsticle = new H_Obsticle(obsticles);
-		enemyMovement = new H_EnemyMovement(enemies);
+		enemyMovement = new H_EnemyMovement(enemies, obsticle);
 	}
 
 	private void Update()
