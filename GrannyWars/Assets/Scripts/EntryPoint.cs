@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class EntryPoint : MonoBehaviour
 {
-	[SerializeField] C_Player[] players;
-	[SerializeField] C_Enemy[] enemies;
+	[SerializeField] private C_Player[] players;
+	[SerializeField] private C_Enemy[] enemies;
+    [SerializeField] private GameObject objectPool;
+    [SerializeField] private int[] nbrOfObjects;
 
-	H_PlayerMovement movement;
-	H_EnemyMovement enemyMovement;
-    H_PlayerAttacking attacking;
+    private H_PlayerMovement movement;
+    private H_EnemyMovement enemyMovement;
+    private H_PlayerAttacking attacking;
+
+
 
     private void Start()
 	{
