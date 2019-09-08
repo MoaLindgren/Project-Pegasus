@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class H_PlayerAttacking
 {
-    private readonly C_Player playerComponent;
+    private readonly C_Player player;
+    private readonly EntryPoint entryPoint;
+    private readonly C_Projectile[] projectiles;
 
     private Collider[] enemies = new Collider[1];
     private bool canAttack = false;
@@ -12,24 +14,26 @@ public class H_PlayerAttacking
     private float cooldown;
     private string enemy = "Enemy";
 
-    public H_PlayerAttacking
-    (C_Player playerComponent)
-    {
-        this.playerComponent = playerComponent;
 
-        cooldown = playerComponent.basicAttackCooldown;
+    public H_PlayerAttacking
+    (C_Player player, C_Projectile[] projectiles)
+    {
+        this.player = player;
+        this.projectiles = projectiles;
+
+        cooldown = player.basicAttackCooldown;
     }
 
     public void Tick()
     {
-        Physics.OverlapSphereNonAlloc(playerComponent.transform.position, playerComponent.basicAttackRange, enemies);
+        Physics.OverlapSphereNonAlloc(player.transform.position, player.basicAttackRange, enemies);
         if (recentlyAttacked)
         {
             cooldown -= Time.deltaTime;
             if (cooldown <= 0f)
             {
                 recentlyAttacked = false;
-                cooldown = playerComponent.basicAttackCooldown;
+                cooldown = player.basicAttackCooldown;
             }
         }
         else
@@ -47,6 +51,14 @@ public class H_PlayerAttacking
 
     private void Attack()
     {
-        Debug.Log("Attack!");
+        switch (player.attackerType)
+        {
+            case C_Player.AttackerType.Melee:
+                break;
+            case C_Player.AttackerType.Range:
+                Quaternion direction = player.transform.rotation;
+                H_Projectile projectile = new H_Projectile(projectiles, direction, 1, player);
+                break;
+        }
     }
 }

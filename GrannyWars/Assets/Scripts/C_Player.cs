@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class C_Player : MonoBehaviour
 {
+    public enum AttackerType
+    {
+        Range,
+        Melee
+    }
+
+    public AttackerType attackerType;
+
     [Header("Movement Settings")]
     public float speed;
 
@@ -16,6 +24,7 @@ public class C_Player : MonoBehaviour
     public float[] abilityAttackSpeed;
     public float[] abilityCooldown;
 
+    public Transform weapon;
 }
 
 public struct Ability
