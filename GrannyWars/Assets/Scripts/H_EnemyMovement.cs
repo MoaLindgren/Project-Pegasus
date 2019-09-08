@@ -39,7 +39,6 @@ public class H_EnemyMovement : HandlerBehaviour
 
 				if (_enemy.rayCastObsticle)
 				{
-					print("yeee");
 					_enemy.target = _enemy.targetTransform.position - _enemy.targetTransform.position.y * Vector3.up;
 					if (_directionMag >= _enemy.minDistanceToTarget)
 					{
@@ -76,7 +75,6 @@ public class H_EnemyMovement : HandlerBehaviour
 						{
 							if(_hit.transform.tag == "Obsticle")
 							{
-								print("yupp!");
 								_enemy.obsticlePoint = _enemy.obsticlePoint.next;
 								_enemy.target = _enemy.obsticlePoint.transform.position;
 							}
