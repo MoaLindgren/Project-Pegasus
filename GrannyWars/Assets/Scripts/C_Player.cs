@@ -24,7 +24,7 @@ public class C_Player : MonoBehaviour
     public float[] abilityAttackSpeed;
     public float[] abilityCooldown;
 
-    public Transform weapon;
+    public Transform projectileStartPos;
 }
 
 public struct Ability

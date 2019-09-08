@@ -11,8 +11,10 @@ public class H_PlayerAttacking
     private Collider[] enemies = new Collider[1];
     private bool canAttack = false;
     private bool recentlyAttacked = false;
+    private bool transformProjectilePos = false;
     private float cooldown;
     private string enemy = "Enemy";
+    private H_Projectile projectile;
 
 
     public H_PlayerAttacking
@@ -43,9 +45,14 @@ public class H_PlayerAttacking
 
         if (Input.GetKeyDown(KeyCode.Space) && canAttack)
         {
-            Attack();
+           // Attack();
             canAttack = false;
             recentlyAttacked = true;
+        }
+
+        if (transformProjectilePos)
+        {
+            projectile.Tick();
         }
     }
 
@@ -57,7 +64,8 @@ public class H_PlayerAttacking
                 break;
             case C_Player.AttackerType.Range:
                 Quaternion direction = player.transform.rotation;
-                H_Projectile projectile = new H_Projectile(projectiles, direction, 1, player);
+                projectile = new H_Projectile(projectiles, direction, 1, player);
+                transformProjectilePos = true;
                 break;
         }
     }

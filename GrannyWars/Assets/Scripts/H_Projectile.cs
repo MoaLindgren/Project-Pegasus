@@ -25,6 +25,13 @@ public class H_Projectile
 
     private void Shoot()
     {
-       // projectiles[projectileIndex].transform.position = player.
+        projectiles[projectileIndex].transform.parent = player.projectileStartPos;
+        projectiles[projectileIndex].transform.position = Vector3.zero;
+    }
+
+    public void Tick()
+    {
+        float speed = projectiles[projectileIndex].speed * Time.deltaTime;
+        projectiles[projectileIndex].transform.position = projectiles[projectileIndex].transform.forward * speed;
     }
 }

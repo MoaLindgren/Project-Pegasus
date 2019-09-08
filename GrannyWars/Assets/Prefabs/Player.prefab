@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f90f55eff7b3fce419e850aab7ba9695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackerType: 0
   speed: 10
   basicAttackDamage: 0
   basicAttackSpeed: 0
@@ -131,6 +132,7 @@ MonoBehaviour:
   abilityAttackDamage: []
   abilityAttackSpeed: []
   abilityCooldown: []
+  projectileStartPos: {fileID: 6676345009743708532}
 --- !u!1 &7810436077421673578
 GameObject:
   m_ObjectHideFlags: 0
