@@ -9,6 +9,7 @@ public class H_EnemyMovement : HandlerBehaviour
 	public H_EnemyMovement(C_Enemy[] enemies)
 	{
 		this.enemies = enemies;
+		Start();
 	}
 
 	public void Start()
@@ -16,10 +17,12 @@ public class H_EnemyMovement : HandlerBehaviour
 		foreach (C_Enemy e in enemies)
 		{
 			setSpawnPosition(e);
-			e.targetTransform = e.pointsOfInterest[0];
+			if (e.pointsOfInterest.Count > 0)
+			{
+				e.targetTransform = e.pointsOfInterest[0];
+			}
 		}
 	}
-
 	public void Tick()
 	{
 		float _deltaTime = Time.deltaTime;
@@ -59,7 +62,7 @@ public class H_EnemyMovement : HandlerBehaviour
 
 	private void ChangeTarget(C_Enemy e)
 	{
-		if(e.pointsOfInterest.Count > 1)
+		if (e.pointsOfInterest.Count > 1)
 		{
 			e.pointsOfInterest.Remove(e.targetTransform);
 			e.targetTransform = e.pointsOfInterest[0];

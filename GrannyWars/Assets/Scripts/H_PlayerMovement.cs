@@ -9,6 +9,7 @@ public class H_PlayerMovement: HandlerBehaviour
 	public H_PlayerMovement(C_Player[] playerComponents)
 	{
 		this.players = playerComponents;
+		Start();
 	}
 
 	public void Start()
