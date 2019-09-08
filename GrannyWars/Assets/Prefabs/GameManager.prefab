@@ -45,5 +45,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   players:
   - {fileID: 0}
-  enemies:
-  - {fileID: 0}
+  enemies: []
