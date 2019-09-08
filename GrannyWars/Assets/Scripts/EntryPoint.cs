@@ -9,22 +9,24 @@ public class EntryPoint : MonoBehaviour
 
 	H_PlayerMovement movement;
 	H_EnemyMovement enemyMovement;
-	private void Start()
+    H_PlayerAttacking attacking;
+
+    private void Start()
 	{
 		movement = new H_PlayerMovement(players);
-		movement.Start();
+        attacking = new H_PlayerAttacking(players[0]);
+        movement.Start();
 
 		enemyMovement = new H_EnemyMovement(enemies);
 		enemyMovement.Start();
-
-
 	}
 
 	private void Update()
 	{
 		movement.Tick();
 		enemyMovement.Tick();
-	}
+        attacking.Tick();
+    }
 }
 
 

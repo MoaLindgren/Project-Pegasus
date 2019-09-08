@@ -11,6 +11,7 @@ public class C_Player : MonoBehaviour
     public float basicAttackDamage;
     public float basicAttackSpeed;
     public float basicAttackRange;
+    public float basicAttackCooldown;
     public float[] abilityAttackDamage;
     public float[] abilityAttackSpeed;
     public float[] abilityCooldown;

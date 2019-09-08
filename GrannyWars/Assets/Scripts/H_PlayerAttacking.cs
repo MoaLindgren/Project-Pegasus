@@ -4,27 +4,49 @@ using UnityEngine;
 
 public class H_PlayerAttacking
 {
-    private Collider[] enemies;
-    private C_Player[] playerComponent;
-    private bool canAttack = false;
+    private readonly C_Player playerComponent;
 
-    public H_PlayerAttacking(C_Player[] playerComponent)
+    private Collider[] enemies = new Collider[1];
+    private bool canAttack = false;
+    private bool recentlyAttacked = false;
+    private float cooldown;
+    private string enemy = "Enemy";
+
+    public H_PlayerAttacking
+    (C_Player playerComponent)
     {
         this.playerComponent = playerComponent;
+
+        cooldown = playerComponent.basicAttackCooldown;
     }
 
-    void Tick()
+    public void Tick()
     {
-        Physics.OverlapSphereNonAlloc(playerComponent[0].transform.position, playerComponent[0].basicAttackRange, enemies);
-
-        if(enemies.Length > 0)
+        Physics.OverlapSphereNonAlloc(playerComponent.transform.position, playerComponent.basicAttackRange, enemies);
+        if (recentlyAttacked)
         {
-            canAttack = true;
+            cooldown -= Time.deltaTime;
+            if (cooldown <= 0f)
+            {
+                recentlyAttacked = false;
+                cooldown = playerComponent.basicAttackCooldown;
+            }
+        }
+        else
+        {
+            canAttack = enemies[0].tag == enemy;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && canAttack)
+        {
+            Attack();
+            canAttack = false;
+            recentlyAttacked = true;
         }
     }
 
     private void Attack()
     {
-
+        Debug.Log("Attack!");
     }
 }
