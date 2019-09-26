@@ -29,6 +29,7 @@ public class H_EnemyMovement : HandlerBehaviour
 	public void Tick()
 	{
 		float _deltaTime = Time.deltaTime;
+
 		foreach (C_Enemy _enemy in enemies)
 		{
 			if (_enemy.targetTransform != null)
@@ -57,7 +58,7 @@ public class H_EnemyMovement : HandlerBehaviour
 				}
 				else
 				{
-					
+					//If we have not reached our destination
 					if (_directionMag >= 0.1f)
 					{
 						//Movement
@@ -67,16 +68,29 @@ public class H_EnemyMovement : HandlerBehaviour
 						//Rotation
 						_enemy.transform.LookAt(_enemy.transform.position + _direction);
 					}
+					//If we have reached our destination
 					else
 					{
 						Vector3 _dir = _enemy.targetTransform.position - _enemy.transform.position;
 						RaycastHit _hit;
+
+						//if the obsticle still is in the way
 						if (Physics.Raycast(_enemy.transform.position, _dir, out _hit))
 						{
-							if(_hit.transform.tag == "Obsticle")
+							if (_hit.transform.tag == "Obsticle")
 							{
-								_enemy.obsticlePoint = _enemy.obsticlePoint.next;
-								_enemy.target = _enemy.obsticlePoint.transform.position;
+								C_Obsticle _obs = _hit.transform.GetComponent<C_Obsticle>();
+								if (obsticleHandler.NavigateClockwise(_obs, obsticleHandler.FindClosestPoint(_obs, _enemy.transform.position), _enemy.targetTransform.position))
+								{
+									_enemy.obsticlePoint = _enemy.obsticlePoint.previous;
+									_enemy.target = _enemy.obsticlePoint.transform.position;
+								}
+								else
+								{
+									_enemy.obsticlePoint = _enemy.obsticlePoint.next;
+									_enemy.target = _enemy.obsticlePoint.transform.position;
+								}
+
 							}
 							else
 							{

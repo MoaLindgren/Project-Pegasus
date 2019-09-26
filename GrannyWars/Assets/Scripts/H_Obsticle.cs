@@ -50,4 +50,58 @@ public class H_Obsticle : HandlerBehaviour
 		
 	}
 
+	//Should the AI go clockwise around the obsticle?
+	/*
+		The obsticle goes through the obsticlepoints one at a time (alternating between clockwise and counter clockwise) and raycast towards our target,
+		if the raycast hits the obsticle, we move on to the next node, otherwise, we tell our caller whether the obsticlepoint that
+		missed was clockwise or not. 
+	 * */
+	public bool NavigateClockwise(C_Obsticle obsticle, C_ObsticlePoint point, Vector3 ultimateTarget)
+	{
+		Transform _obsTransform = obsticle.transform;
+
+		C_ObsticlePoint _next = point.next;
+		C_ObsticlePoint _previous = point.previous;
+
+		for (int i = 0; i < obsticle.obsticlePoints.Length *0.5f; i++)
+		{
+			RaycastHit _hit;
+			Vector3 _direction = ultimateTarget - _next.transform.position;
+			Debug.DrawRay(_next.transform.position, _direction, Color.blue,5);
+			if (Physics.Raycast(_next.transform.position, _direction, out _hit))
+			{
+				if(_hit.transform.GetComponent<C_Obsticle>() != obsticle)
+				{
+					return false;
+				}
+				else
+				{
+					_next = _next.next;
+				}
+			}
+			else
+			{
+				return false;
+			}
+			_direction = ultimateTarget - _previous.transform.position;
+			Debug.DrawRay(_previous.transform.position, _direction, Color.red, 5);
+			if (Physics.Raycast(_previous.transform.position, _direction, out _hit))
+			{
+				if (_hit.transform.GetComponent<C_Obsticle>() != obsticle)
+				{
+					return true;
+				}
+				else
+				{
+					_previous = _previous.previous;
+				}
+			}
+			else
+			{
+				return true;
+			}
+		}
+		return true;
+	}
+
 }
