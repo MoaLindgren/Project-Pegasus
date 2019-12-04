@@ -17,11 +17,10 @@ public class H_Obsticle : HandlerBehaviour
 		foreach(C_Obsticle o in obsticles)
 		{
 			//Creating path around obsticle
-			o.obsticlePoints = new C_ObsticlePoint[8];
-			o.obsticlePoints[0] = o.transform.GetChild(0).GetComponent<C_ObsticlePoint>();
-			for (int i = 1; i < 8; i++)
+			//o.obsticlePoints[0] = o.transform.GetChild(0).GetComponent<C_ObsticlePoint>();
+			for (int i = 1; i < o.obsticlePoints.Length; i++)
 			{
-				o.obsticlePoints[i] = o.transform.GetChild(i).GetComponent<C_ObsticlePoint>();
+				//o.obsticlePoints[i] = o.transform.GetChild(i).GetComponent<C_ObsticlePoint>();
 				o.obsticlePoints[i].previous = o.obsticlePoints[i - 1];
 				o.obsticlePoints[i].previous.next = o.obsticlePoints[i];
 			}
