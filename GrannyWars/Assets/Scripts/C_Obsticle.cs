@@ -35,18 +35,21 @@ public class C_Obsticle : MonoBehaviour
 			chosenVertices = SortVertecies(chosenVertices);
 			obsticlePoints = new C_ObsticlePoint[chosenVertices.Count];
 			int _iterations = maximumNumberOfPoints ? chosenVertices.Count : numberOfPoints;
-
+			GameObject _obsticlePoints = new GameObject();
+			_obsticlePoints.name = "Obsticle Points";
+			_obsticlePoints.transform.parent = transform;
+			_obsticlePoints.transform.SetSiblingIndex(0);
 			for (int i = 0; i < _iterations; i++)
 			{
 				int _index = maximumNumberOfPoints ? 1 : chosenVertices.Count / numberOfPoints;
 				Vector3 _vertex = chosenVertices[_index * i];
-				GameObject obj = Instantiate(obsticlePoint);
-				obj.transform.position = gameObject.transform.position + Vector3.Scale(_vertex, transform.localScale) + _vertex * distanceFromMesh;
-				obj.transform.position = obj.transform.position - obj.transform.position.y * Vector3.up;
-				obj.transform.name = "ObsticlePoint " + (i + 1);
-				obj.transform.parent = transform;
-				obj.transform.SetSiblingIndex(i);
-				obsticlePoints[i] = obj.GetComponent<C_ObsticlePoint>();
+				GameObject _obj = Instantiate(obsticlePoint);
+				_obj.transform.position = gameObject.transform.position + Vector3.Scale(_vertex, transform.localScale) + _vertex * distanceFromMesh;
+				_obj.transform.position = _obj.transform.position - _obj.transform.position.y * Vector3.up;
+				_obj.transform.name = "ObsticlePoint " + (i + 1);
+				_obj.transform.parent = _obsticlePoints.transform;
+				_obj.transform.SetSiblingIndex(i);
+				obsticlePoints[i] = _obj.GetComponent<C_ObsticlePoint>();
 			}
 		}
 		else
