@@ -4,30 +4,68 @@ using UnityEngine;
 
 public class C_Player : MonoBehaviour
 {
-    public enum AttackerType
-    {
-        Range,
-        Melee
-    }
+	public enum AttackerType
+	{
+		Range,
+		Melee
+	}
 
-    public AttackerType attackerType;
 
-    [Header("Movement Settings")]
-    public float speed;
+	[Header("Data")]
+	public PlayerStats stats;
+	public Ability ability;
 
-    [Header("Damage Settings")]
-    public float basicAttackDamage;
-    public float basicAttackSpeed;
-    public float basicAttackRange;
-    public float basicAttackCooldown;
-    public float[] abilityAttackDamage;
-    public float[] abilityAttackSpeed;
-    public float[] abilityCooldown;
+	public AttackerType attackerType;
 
-    public Transform projectileStartPos;
+	[Header("Movement Settings")]
+	public float speed;
+
+	[Header("Health Settings")]
+	public float health;
+
+	[Header("Damage Settings")]
+	public float basicAttackDamage;
+	public float basicAttackSpeed;
+	public float basicAttackRange;
+	public float basicAttackCooldown;
+	public float[] abilityAttackDamage;
+	public float[] abilityAttackSpeed;
+	public float[] abilityCooldown;
+
+	[Header("Other Settings || NOT SET WITH DATA ||")]
+	public Transform projectileStartPos;
+
+
+	public void SetValues()
+	{
+		if (stats != null)
+		{
+			attackerType = stats.attackerType;
+			speed = stats.speed;
+			health = stats.health;
+			basicAttackDamage = stats.basicAttackDamage;
+			basicAttackSpeed = stats.basicAttackSpeed;
+			basicAttackRange = stats.basicAttackRange;
+			basicAttackCooldown = stats.basicAttackCooldown;
+		}
+		else
+		{
+			attackerType = AttackerType.Melee;
+			speed = 3;
+			health = 10;
+			basicAttackDamage = 1;
+			basicAttackSpeed = 2;
+			basicAttackRange = 50;
+			basicAttackCooldown = 0.5f;
+		}
+
+	}
 }
 
-public struct Ability
+
+
+[CreateAssetMenu(fileName = "New Ability", menuName = "Ability")]
+public class Ability : ScriptableObject
 {
 	float attackDMG;
 	float attackSPD;

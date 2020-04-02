@@ -94,7 +94,6 @@ public class C_Obsticle : MonoBehaviour
 [CustomEditor(typeof(C_Obsticle))]
 public class C_ObsticleEditor : Editor
 {
-
 	override public void OnInspectorGUI()
 	{
 		DrawDefaultInspector();

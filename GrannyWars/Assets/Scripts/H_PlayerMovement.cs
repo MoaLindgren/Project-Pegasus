@@ -17,6 +17,7 @@ public class H_PlayerMovement: HandlerBehaviour
 		foreach (C_Player p in players)
 		{
 			setSpawnPosition(p);
+			p.SetValues();
 		}
 	}
 
