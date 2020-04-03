@@ -21,6 +21,7 @@ public class H_Obsticle : HandlerBehaviour
 			{
 				o.obsticlePoints = new C_ObsticlePoint[o.transform.GetChild(0).childCount];
 			}
+			print(o.transform.GetChild(0).GetChild(0).name);
 			o.obsticlePoints[0] = o.transform.GetChild(0).GetChild(0).GetComponent<C_ObsticlePoint>();
 			for (int i = 1; i < o.obsticlePoints.Length; i++)
 			{

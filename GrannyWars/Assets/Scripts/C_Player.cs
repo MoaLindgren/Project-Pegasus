@@ -47,6 +47,8 @@ public class C_Player : MonoBehaviour
 			basicAttackSpeed = stats.basicAttackSpeed;
 			basicAttackRange = stats.basicAttackRange;
 			basicAttackCooldown = stats.basicAttackCooldown;
+
+			ability = stats.ability;
 		}
 		else
 		{

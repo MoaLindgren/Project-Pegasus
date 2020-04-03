@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d37c809bdf8cf504a8da8a1f87f435a1, type: 3}
+  m_Name: Lady latina boii_Datapack
+  m_EditorClassIdentifier: 
+  attackerType: 0
+  speed: 200
+  health: 1
+  basicAttackDamage: 13
+  basicAttackSpeed: 12
+  basicAttackRange: 12
+  basicAttackCooldown: 12
+  ability: {fileID: 11400000, guid: 8d0b85f6dd016574f9d96b1024c88422, type: 2}
+  projectileStartPos: {fileID: 0}
